@@ -20,12 +20,18 @@ namespace ThaiWordBreak
 
         private void uxBreak_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(string.Join("-", WordBreak(uxText.Text).ToArray()));
+
             using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
             {
                 bi.SetText(uxText.Text);
-                var words = bi.Enumerate().ToList(); // requires ICU4NETExtension
+
+                // requires ICU4NETExtension to use Enumerate extension method
+                var words = bi.Enumerate().ToList();
                 uxText.Text = string.Join("-", words.ToArray());
             }
+
+
         }
 
         /// <summary>
@@ -35,19 +41,17 @@ namespace ThaiWordBreak
         /// <returns>List of words</returns>
         private List<string> WordBreak(string text)
         {
-            StringBuilder sb = new StringBuilder();
-            List<string> col = new List<string>();
+            var sb = new StringBuilder();
+            var col = new List<string>();
 
             using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
             {
                 bi.SetText(text);
-                int pos = bi.First(), prev = -1;
-                while (pos != BreakIterator.DONE)
+                int start = bi.First(), end = bi.Next();
+                while (end != BreakIterator.DONE)
                 {
-                    if (prev != -1)
-                        col.Add(text.Substring(prev, pos - prev));
-                    prev = pos;
-                    pos = bi.Next();
+                    col.Add(text.Substring(start, end - start));
+                    start = end; end = bi.Next();
                 }
             }
 

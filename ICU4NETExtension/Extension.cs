@@ -10,18 +10,16 @@ namespace ICU4NETExtension
     {
         public static IEnumerable<string> Enumerate(this BreakIterator bi)
         {
-            StringBuilder sb = new StringBuilder();
-            String text = bi.GetCLRText();
-               int pos = bi.First(), prev = -1;
-                while (pos != BreakIterator.DONE)
-                {
-                    if (prev != -1)
-                        yield return text.Substring(prev, pos - prev);
-                    prev = pos;
-                    pos = bi.Next();
-                }
+            var sb = new StringBuilder();
+            string text = bi.GetCLRText();
+            int start = bi.First(), end = bi.Next();
+            while (end != BreakIterator.DONE)
+            {
+                yield return text.Substring(start, end - start);
+                start = end; end = bi.Next();
             }
-            
         }
+
     }
+}
 
