@@ -32,6 +32,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
-/ICU4C/bin/*
-/ICU4C/include/*
-/ICU4C/lib/*
+ICU4C/bin/*
+ICU4C/include/*
+ICU4C/lib/*
