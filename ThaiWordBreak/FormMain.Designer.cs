@@ -90,7 +90,7 @@
             this.uxOccurrenceCount.Name = "uxOccurrenceCount";
             this.uxOccurrenceCount.Size = new System.Drawing.Size(135, 27);
             this.uxOccurrenceCount.TabIndex = 2;
-            this.uxOccurrenceCount.Text = "Occurence Count";
+            this.uxOccurrenceCount.Text = "Occurrence Count";
             this.uxOccurrenceCount.UseVisualStyleBackColor = true;
             this.uxOccurrenceCount.Click += new System.EventHandler(this.uxOccurrenceCount_Click);
             // 
