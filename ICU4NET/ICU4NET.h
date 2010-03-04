@@ -189,7 +189,7 @@ static const Locale & 	getDefault (void)
 			BreakIterator^ ret = gcnew ICU4NET::BreakIterator();
 			UErrorCode status = U_ZERO_ERROR;
 			ret->m_native = icu_4_2::BreakIterator::createWordInstance(
-				*(loc->m_native), status);
+				icu_4_2::Locale::getUS(), status);
 			
 			// TODO: check status and throw exception!
 			return ret;

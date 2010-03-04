@@ -11,6 +11,7 @@ using ICU4NETExtension;
 
 namespace ThaiWordBreak
 {
+
     public partial class FormMain : Form
     {
         public FormMain()
@@ -20,18 +21,45 @@ namespace ThaiWordBreak
 
         private void uxBreak_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(string.Join("-", WordBreak(uxText.Text).ToArray()));
-
             using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
             {
                 bi.SetText(uxText.Text);
 
                 // requires ICU4NETExtension to use Enumerate extension method
                 var words = bi.Enumerate().ToList();
-                uxText.Text = string.Join("-", words.ToArray());
+                MessageBox.Show(string.Join("-", words.ToArray()));
             }
+        }
 
+        private void uxDistinct_Click(object sender, EventArgs e)
+        {
+            using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
+            {
+                bi.SetText(uxText.Text);
 
+                // requires ICU4NETExtension to use Enumerate extension method
+                MessageBox.Show(string.Join(",", bi.Enumerate()
+                    .Distinct()
+                    .OrderBy(w => w)
+                    .ToArray()));
+            }
+        }
+
+        private void uxOccurrenceCount_Click(object sender, EventArgs e)
+        {
+            using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
+            {
+                bi.SetText(uxText.Text);
+
+                // requires ICU4NETExtension to use Enumerate extension method
+                MessageBox.Show(string.Join(Environment.NewLine, bi.Enumerate()
+                    .GroupBy(w => w)
+                    .OrderBy(x => x.Count())
+                    .Reverse()
+                    .Select(x => x.Key + " : " + x.Count())
+                    .Take(10)
+                    .ToArray()));
+            }
         }
 
         /// <summary>
@@ -57,5 +85,6 @@ namespace ThaiWordBreak
 
             return col;
         }
+
     }
 }
