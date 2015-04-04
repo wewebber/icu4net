@@ -1,90 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using ICU4NET;
-using ICU4NETExtension;
-
-namespace ThaiWordBreak
+﻿namespace ThaiWordBreak
 {
+	using System;
+	using System.Linq;
+	using System.Windows.Forms;
+	using ICU4NET;
+	using ICU4NETExtension;
 
-    public partial class FormMain : Form
-    {
-        public FormMain()
-        {
-            InitializeComponent();
-        }
+	public partial class FormMain : Form
+	{
+		public FormMain()
+		{
+			this.InitializeComponent();
+		}
 
-        private void uxBreak_Click(object sender, EventArgs e)
-        {
-            using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
-            {
-                bi.SetText(uxText.Text);
+		private void UxBreakClick(object sender, EventArgs e)
+		{
+			using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
+			{
+				bi.SetText(this.uxText.Text);
 
-                // requires ICU4NETExtension to use Enumerate extension method
-                var words = bi.Enumerate().ToList();
-                MessageBox.Show(string.Join("-", words.ToArray()));
-            }
-        }
+				var words = bi.Enumerate().ToList();
 
-        private void uxDistinct_Click(object sender, EventArgs e)
-        {
-            using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
-            {
-                bi.SetText(uxText.Text);
+				MessageBox.Show(string.Join("-", words.ToArray()));
+			}
+		}
 
-                // requires ICU4NETExtension to use Enumerate extension method
-                MessageBox.Show(string.Join(",", bi.Enumerate()
-                    .Distinct()
-                    .OrderBy(w => w)
-                    .ToArray()));
-            }
-        }
+		private void UxDistinctClick(object sender, EventArgs e)
+		{
+			using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
+			{
+				bi.SetText(this.uxText.Text);
 
-        private void uxOccurrenceCount_Click(object sender, EventArgs e)
-        {
-            using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
-            {
-                bi.SetText(uxText.Text);
+				var words = bi.Enumerate()
+					.Distinct()
+					.OrderBy(w => w)
+					.ToArray();
 
-                // requires ICU4NETExtension to use Enumerate extension method
-                MessageBox.Show(string.Join(Environment.NewLine, bi.Enumerate()
-                    .GroupBy(w => w)
-                    .OrderBy(x => x.Count())
-                    .Reverse()
-                    .Select(x => x.Key + " : " + x.Count())
-                    .Take(10)
-                    .ToArray()));
-            }
-        }
+				MessageBox.Show(string.Join(", ", words));
+			}
+		}
 
-        /// <summary>
-        /// Using BreakIterator, the traditional way
-        /// </summary>
-        /// <param name="text">Text to be break</param>
-        /// <returns>List of words</returns>
-        private List<string> WordBreak(string text)
-        {
-            var sb = new StringBuilder();
-            var col = new List<string>();
+		private void UxOccurrenceCountClick(object sender, EventArgs e)
+		{
+			using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
+			{
+				bi.SetText(this.uxText.Text);
 
-            using (BreakIterator bi = BreakIterator.CreateWordInstance(Locale.GetUS()))
-            {
-                bi.SetText(text);
-                int start = bi.First(), end = bi.Next();
-                while (end != BreakIterator.DONE)
-                {
-                    col.Add(text.Substring(start, end - start));
-                    start = end; end = bi.Next();
-                }
-            }
+				var words = bi.Enumerate()
+					.GroupBy(w => w)
+					.OrderBy(x => x.Count())
+					.Reverse()
+					.Select(x => x.Key + " : " + x.Count())
+					.Take(10)
+					.ToArray();
 
-            return col;
-        }
-
-    }
+				MessageBox.Show(string.Join(Environment.NewLine, words));
+			}
+		}
+	}
 }

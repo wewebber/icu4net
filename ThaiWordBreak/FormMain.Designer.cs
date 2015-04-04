@@ -47,7 +47,7 @@
             this.uxBreak.TabIndex = 0;
             this.uxBreak.Text = "Break!";
             this.uxBreak.UseVisualStyleBackColor = true;
-            this.uxBreak.Click += new System.EventHandler(this.uxBreak_Click);
+            this.uxBreak.Click += new System.EventHandler(this.UxBreakClick);
             // 
             // uxText
             // 
@@ -82,7 +82,7 @@
             this.uxDistinct.TabIndex = 1;
             this.uxDistinct.Text = "Distinct Words";
             this.uxDistinct.UseVisualStyleBackColor = true;
-            this.uxDistinct.Click += new System.EventHandler(this.uxDistinct_Click);
+            this.uxDistinct.Click += new System.EventHandler(this.UxDistinctClick);
             // 
             // uxOccurrenceCount
             // 
@@ -92,7 +92,7 @@
             this.uxOccurrenceCount.TabIndex = 2;
             this.uxOccurrenceCount.Text = "Occurrence Count";
             this.uxOccurrenceCount.UseVisualStyleBackColor = true;
-            this.uxOccurrenceCount.Click += new System.EventHandler(this.uxOccurrenceCount_Click);
+            this.uxOccurrenceCount.Click += new System.EventHandler(this.UxOccurrenceCountClick);
             // 
             // uxPanelContainer
             // 
