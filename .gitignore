@@ -20,6 +20,9 @@
 *.lib
 *.sbr
 *.scc
+*.sdf
+*.opensdf
+
 [Bb]in
 [Dd]ebug*/
 obj/

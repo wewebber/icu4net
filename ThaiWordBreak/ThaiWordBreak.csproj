@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ThaiWordBreak</RootNamespace>
     <AssemblyName>ThaiWordBreak</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -28,6 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -91,11 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ICU4NETExtension\ICU4NETExtension.csproj">
-      <Project>{98EF3283-02F5-4094-BD6D-7AE0C13A47BA}</Project>
+      <Project>{98ef3283-02f5-4094-bd6d-7ae0c13a47ba}</Project>
       <Name>ICU4NETExtension</Name>
     </ProjectReference>
     <ProjectReference Include="..\ICU4NET\ICU4NET.vcxproj">
-      <Project>{2FADFE38-0429-489F-B910-8A5EC9AB5717}</Project>
+      <Project>{71abf7d1-1b8f-4a39-a58f-2cfb904035ec}</Project>
       <Name>ICU4NET</Name>
     </ProjectReference>
   </ItemGroup>
