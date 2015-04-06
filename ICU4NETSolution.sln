@@ -15,6 +15,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICU4NETExtension", "ICU4NET
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThaiWordBreak", "ThaiWordBreak\ThaiWordBreak.csproj", "{7F028B4A-3649-48C9-9E47-D496F70C374F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NugetPackages", "NugetPackages", "{0F8BA405-16E0-4D79-8A1C-52D6EAA4218E}"
+	ProjectSection(SolutionItems) = preProject
+		NugetPackages\build-nuget-packages.ps1 = NugetPackages\build-nuget-packages.ps1
+		NugetPackages\push-nuget-packages.ps1 = NugetPackages\push-nuget-packages.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{95248571-EAC0-4816-89F2-8C23DB6B10F0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

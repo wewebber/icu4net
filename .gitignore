@@ -42,5 +42,6 @@ ICU4C/lib64/*
 
 StyleCop.Cache
 packages/
-
 ipch
+NugetPackages/*.nupkg
+!.nuget/NuGet.exe
