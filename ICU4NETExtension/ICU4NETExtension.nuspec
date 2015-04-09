@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <package >
-  <metadata>
-    <id>ICU4NET</id>
-    <version>$version$</version>
-    <title>ICU4NET</title>
-    <authors>Natthawut Kulnirundorn</authors>
-    <projectUrl>https://github.com/niaher/icu4net</projectUrl>
-    <description>Simple wrapper for ICU4C (http://site.icu-project.org/).</description>
-  </metadata>
+	<metadata>
+		<id>ICU4NET</id>
+		<version>$version$</version>
+		<title>ICU4NET</title>
+		<authors>Natthawut Kulnirundorn, niaher</authors>
+		<projectUrl>https://github.com/niaher/icu4net</projectUrl>
+		<description>Simple wrapper for ICU4C (http://site.icu-project.org/).</description>
+	</metadata>
 
-  <files>
-    <file src="bin\Release\ICU4NET.dll" target="lib\net45" />
-    <file src="bin\Release\ICU4NET.pdb" target="lib\net45" />
-    <file src="ReadMe.txt" target="" />
-   </files>
+	<files>
+		<file src="bin\Release\ICU4NET.dll" target="lib\net45" />
+		<file src="bin\Release\ICU4NET.pdb" target="lib\net45" />
+	</files>
 </package>
