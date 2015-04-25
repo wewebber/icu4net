@@ -71,43 +71,43 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\ICU4C-55.1-bin32.1.0.1\tools\ICU4C\icudt55.dll">
+    <None Include="..\packages\ICU4C-55.1-bin32.1.0.2\tools\ICU4C\icudt55.dll">
       <Link>icudt55.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\ICU4C-55.1-bin32.1.0.1\tools\ICU4C\icuin55.dll">
+    <None Include="..\packages\ICU4C-55.1-bin32.1.0.2\tools\ICU4C\icuin55.dll">
       <Link>icuin55.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\ICU4C-55.1-bin32.1.0.1\tools\ICU4C\icuio55.dll">
+    <None Include="..\packages\ICU4C-55.1-bin32.1.0.2\tools\ICU4C\icuio55.dll">
       <Link>icuio55.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\ICU4C-55.1-bin32.1.0.1\tools\ICU4C\icule55.dll">
+    <None Include="..\packages\ICU4C-55.1-bin32.1.0.2\tools\ICU4C\icule55.dll">
       <Link>icule55.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\ICU4C-55.1-bin32.1.0.1\tools\ICU4C\iculx55.dll">
+    <None Include="..\packages\ICU4C-55.1-bin32.1.0.2\tools\ICU4C\iculx55.dll">
       <Link>iculx55.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\ICU4C-55.1-bin32.1.0.1\tools\ICU4C\icutu55.dll">
+    <None Include="..\packages\ICU4C-55.1-bin32.1.0.2\tools\ICU4C\icutu55.dll">
       <Link>icutu55.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\ICU4C-55.1-bin32.1.0.1\tools\ICU4C\icuuc55.dll">
+    <None Include="..\packages\ICU4C-55.1-bin32.1.0.2\tools\ICU4C\icuuc55.dll">
       <Link>icuuc55.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
