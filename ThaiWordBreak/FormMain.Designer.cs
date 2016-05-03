@@ -35,6 +35,7 @@
             this.uxDistinct = new System.Windows.Forms.Button();
             this.uxOccurrenceCount = new System.Windows.Forms.Button();
             this.uxPanelContainer = new System.Windows.Forms.Panel();
+            this.uxNormalized = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.uxPanelContainer.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,7 @@
             this.flowLayoutPanel1.Controls.Add(this.uxBreak);
             this.flowLayoutPanel1.Controls.Add(this.uxDistinct);
             this.flowLayoutPanel1.Controls.Add(this.uxOccurrenceCount);
+            this.flowLayoutPanel1.Controls.Add(this.uxNormalized);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 326);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -103,6 +105,16 @@
             this.uxPanelContainer.Size = new System.Drawing.Size(702, 326);
             this.uxPanelContainer.TabIndex = 3;
             // 
+            // uxNormalized
+            // 
+            this.uxNormalized.Location = new System.Drawing.Point(426, 3);
+            this.uxNormalized.Name = "uxNormalized";
+            this.uxNormalized.Size = new System.Drawing.Size(135, 27);
+            this.uxNormalized.TabIndex = 3;
+            this.uxNormalized.Text = "Normalized";
+            this.uxNormalized.UseVisualStyleBackColor = true;
+            this.uxNormalized.Click += new System.EventHandler(this.UxNormalizedClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,6 +140,7 @@
         private System.Windows.Forms.Button uxDistinct;
         private System.Windows.Forms.Button uxOccurrenceCount;
         private System.Windows.Forms.Panel uxPanelContainer;
+        private System.Windows.Forms.Button uxNormalized;
     }
 }
 

@@ -57,5 +57,14 @@
 				MessageBox.Show(string.Join(Environment.NewLine, words));
 			}
 		}
-	}
+
+        private void UxNormalizedClick(object sender, EventArgs e)
+        {
+            using (Normalizer2 normalizer = Normalizer2.GetNFKCCasefoldInstance())
+            {
+                string normalized = normalizer.Normalize(this.uxText.Text);
+				MessageBox.Show(normalized);
+            }
+        }
+    }
 }

@@ -16,5 +16,17 @@
 				end = bi.Next();
 			}
 		}
+
+		public static IEnumerable<Token> EnumerateTokens(this BreakIterator bi)
+		{
+			string text = bi.GetCLRText();
+			int start = bi.First(), end = bi.Next();
+			while (end != BreakIterator.DONE)
+			{
+                yield return new Token(start, end, text.Substring(start, end - start), bi.GetRuleStatus());
+				start = end;
+				end = bi.Next();
+			}
+		}
 	}
 }

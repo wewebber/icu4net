@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>ICU4NET</id>
-		<version>$version$</version>
+		<version>0.1</version>
 		<title>ICU4NET</title>
 		<authors>Natthawut Kulnirundorn, niaher</authors>
 		<projectUrl>https://github.com/niaher/icu4net</projectUrl>

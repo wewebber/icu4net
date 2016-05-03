@@ -30,12 +30,12 @@ function Build-Packages
 		$projectDir = "$solutionDir\$project"
 
 		# Make sure .nuspec file exists.
-		cd $projectDir
-		&$nuget spec -Verbosity quiet
-		cd $currentDir
+		#cd $projectDir
+		#&$nuget spec -Verbosity quiet
+		#cd $currentDir
 
 		# Build package.
-		&$nuget pack "$projectDir\$project.csproj" `
+		&$nuget pack "$projectDir\$project.x64.nuspec" `
 			-OutputDirectory "$currentDir" `
 			-Symbols `
 			-Properties Configuration=Release

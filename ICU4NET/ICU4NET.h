@@ -4,6 +4,8 @@
 
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace System::IO;
+using namespace System::Text;
 
 namespace ICU4NET {
 	public ref class CharacterIterator
@@ -73,6 +75,13 @@ namespace ICU4NET {
 			return loc;
 		}
 
+		static Locale^ GetRoot()
+		{
+			Locale^ loc = gcnew Locale();
+			loc->m_native = &icu::Locale::getRoot();
+			return loc;
+		}
+
 		Locale() : m_native(NULL)
 		{
 		}
@@ -89,7 +98,7 @@ namespace ICU4NET {
 		CharacterIterator^ GetText() { return gcnew ICU4NET::CharacterIterator(); }
 		System::String^ GetCLRText()
 		{
-			return gcnew System::String(m_bufferedText->getBuffer());
+			return gcnew System::String(m_bufferedText->getTerminatedBuffer());
 		}
 
 		void SetText(String^ text)
@@ -127,7 +136,9 @@ namespace ICU4NET {
 
 		System::Boolean IsBoundary(System::Int32 offset) { return m_native->isBoundary(offset); }
 
-		System::Int32 Next(System::Int32 n) { return m_native->next(n); };
+		System::Int32 Next(System::Int32 n) { return m_native->next(n); }
+
+		System::Int32 GetRuleStatus() { return m_native->getRuleStatus(); }
 
 		static ICU4NET::BreakIterator^ CreateWordInstance(const ICU4NET::Locale^ loc)
 		{
@@ -232,5 +243,115 @@ namespace ICU4NET {
 	internal:
 		icu::BreakIterator* m_native;
 		icu::UnicodeString* m_bufferedText;
+	};
+
+	public ref class Normalizer2
+	{
+	public:
+
+		enum class Mode { Compose, Decompose, FCD, ComposeContiguous };
+
+		String^ Normalize(const String^ src)
+		{
+			// Pin memory so GC can't move it while native function is called
+			pin_ptr<const wchar_t> wch = PtrToStringChars(src);
+			UErrorCode status = U_ZERO_ERROR;
+
+			UnicodeString udest = m_native->normalize(wch, status);
+
+			// TODO: check status and throw exception!
+			// udest is on the stack.
+			return gcnew String(udest.getTerminatedBuffer());
+		}
+
+		static ICU4NET::Normalizer2^ GetNFKCCasefoldInstance()
+		{
+			Normalizer2^ ret = gcnew ICU4NET::Normalizer2();
+			UErrorCode status = U_ZERO_ERROR;
+			ret->m_native = icu::Normalizer2::getNFKCCasefoldInstance(status);
+
+			// TODO: check status and throw exception!
+			return ret;
+		}
+
+		static ICU4NET::Normalizer2^ GetInstance(String^ packageName, String^ name, Mode mode)
+		{
+			UErrorCode status = U_ZERO_ERROR;
+
+			array<Byte>^ utf8PackageName = Encoding::UTF8->GetBytes(packageName);
+			array<Byte>^ utf8Name = Encoding::UTF8->GetBytes(name);
+
+			pin_ptr<unsigned char> pinPackageName = &utf8PackageName[0];
+			pin_ptr<unsigned char> pinName = &utf8Name[0];
+
+			char * nativePackageName = (char *)pinPackageName;
+			char * nativeName = (char *)pinName;
+
+			UNormalization2Mode nativeMode;
+			switch (mode)
+			{
+			case Mode::Compose:
+				nativeMode = UNORM2_COMPOSE;
+				break;
+			case Mode::Decompose:
+				nativeMode = UNORM2_DECOMPOSE;
+				break;
+			case Mode::FCD:
+				nativeMode = UNORM2_FCD;
+				break;
+			case Mode::ComposeContiguous:
+				nativeMode = UNORM2_COMPOSE_CONTIGUOUS;
+				break;
+			default:
+				// TODO: throw exception!
+				nativeMode = UNORM2_COMPOSE;
+				break;
+			}
+
+			Normalizer2^ ret = gcnew ICU4NET::Normalizer2();
+			ret->m_native = icu::Normalizer2::getInstance((const char *)nativePackageName, (const char *)nativeName, nativeMode, status);
+
+			if (U_FAILURE(status))
+			{
+				StringBuilder^ msg = gcnew StringBuilder();
+				msg->Append("Failed to get normalizer instance '");
+				msg->Append(packageName);
+				msg->Append("'.'");
+				msg->Append(name);
+				msg->Append("', mode ");
+				msg->Append(mode);
+				msg->Append("; error code is ");
+				msg->Append(status);
+				String^ message = msg->ToString();
+				throw gcnew Exception(message);
+			}
+
+			// TODO: check status and throw exception!
+			return ret;
+		}
+
+		~Normalizer2() { CleanUp(); }
+	protected:
+		!Normalizer2() { CleanUp(); }
+
+	private:
+		void CleanUp() 
+		{ 
+			// Don't delete; objects are singletons
+		}
+
+		const icu::Normalizer2* m_native;
+	};
+
+	public ref class UData
+	{
+	public:
+		static void SetDataDirectory(String^ path)
+		{
+			array<Byte>^ utf8Path = Encoding::UTF8->GetBytes(path);
+			pin_ptr<unsigned char> pinPath = &utf8Path[0];
+			char * nativePath = (char *)pinPath;
+			u_setDataDirectory(nativePath);
+		}
 	};
 }

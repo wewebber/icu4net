@@ -5,5 +5,7 @@
 #pragma once
 
 #include <unicode/brkiter.h>
+#include <unicode/normalizer2.h>
+#include <unicode/udata.h>
 #include <vcclr.h>
 
